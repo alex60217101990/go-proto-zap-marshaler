@@ -226,9 +226,9 @@ func (p *plugin) generateForField(file *generator.FileDescriptor, message *gener
 
 	case descriptor.FieldDescriptorProto_TYPE_ENUM:
 		if repeated {
-			p.P(`aenc.AppendString(`, variableName, `.String())`)
+			p.P(`aenc.AppendInt32(int32(`, variableName, `))`)
 		} else {
-			p.P(`enc.AddString(`, keyName, `, `, variableName, `.String())`)
+			p.P(`enc.AddInt32(`, keyName, `, int32(`, variableName, `))`)
 		}
 
 	case descriptor.FieldDescriptorProto_TYPE_MESSAGE:
